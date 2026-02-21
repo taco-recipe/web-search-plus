@@ -13,5 +13,10 @@
   "bin": {
     "wsp-openclaw-setup": "./scripts/setup-openclaw.mjs"
   },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
   "license": "MIT"
 }
