@@ -411,7 +411,7 @@ build_orders() {
 install_plugin() {
   [[ "$SKIP_PLUGIN_INSTALL" -eq 1 ]] && return
   require_cmd openclaw
-  echo "[1/5] Installing plugin link"
+  echo "[2/5] Installing plugin link"
   if [[ "$DRY_RUN" -eq 1 ]]; then
     echo "DRY-RUN: openclaw plugins install -l \"$ROOT_DIR\""
   else
@@ -427,7 +427,7 @@ setup_searxng() {
   [[ "$SKIP_SEARXNG_UP" -eq 1 ]] && return
 
   require_cmd docker
-  echo "[2/5] Starting SearXNG docker"
+  echo "[1/5] Starting SearXNG docker"
   if [[ "$DRY_RUN" -eq 1 ]]; then
     echo "DRY-RUN: docker compose -f \"$COMPOSE_FILE\" up -d"
   else
@@ -598,8 +598,8 @@ main() {
     collect_interactive
   fi
 
-  install_plugin
   setup_searxng
+  install_plugin
   apply_openclaw_config
   restart_gateway
   doctor_checks
