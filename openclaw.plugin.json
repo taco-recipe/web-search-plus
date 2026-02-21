@@ -1,0 +1,203 @@
+{
+  "id": "web-search-plus",
+  "name": "Web Search Plus",
+  "description": "Tiered web search plugin with Basic/AI/Auto routing.",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "basic": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "priority": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "searxng",
+                "brave"
+              ]
+            }
+          },
+          "searxng": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "baseUrl": {
+                "type": "string"
+              },
+              "timeoutMs": {
+                "type": "number",
+                "minimum": 100
+              }
+            }
+          },
+          "brave": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "apiKey": {
+                "type": "string"
+              },
+              "safesearch": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "moderate",
+                  "strict"
+                ]
+              },
+              "timeoutMs": {
+                "type": "number",
+                "minimum": 100
+              }
+            }
+          }
+        }
+      },
+      "ai": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "priority": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "tavily",
+                "perplexity"
+              ]
+            }
+          },
+          "tavily": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "apiKey": {
+                "type": "string"
+              },
+              "timeoutMs": {
+                "type": "number",
+                "minimum": 100
+              }
+            }
+          },
+          "perplexity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "apiKey": {
+                "type": "string"
+              },
+              "model": {
+                "type": "string"
+              },
+              "timeoutMs": {
+                "type": "number",
+                "minimum": 100
+              }
+            }
+          }
+        }
+      },
+      "router": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "defaultMode": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "basic",
+              "ai"
+            ]
+          },
+          "providerPreset": {
+            "type": "string",
+            "enum": [
+              "free",
+              "quality",
+              "custom"
+            ]
+          },
+          "minResultsBeforeUpgrade": {
+            "type": "number",
+            "minimum": 1
+          },
+          "upgradeKeywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "maxBraveCallsPerDay": {
+            "type": "number",
+            "minimum": 0
+          },
+          "maxAiCallsPerDay": {
+            "type": "number",
+            "minimum": 0
+          },
+          "enablePrivacyGuard": {
+            "type": "boolean"
+          }
+        }
+      },
+      "cache": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "maxEntries": {
+            "type": "number",
+            "minimum": 1
+          },
+          "ttlSecondsBasic": {
+            "type": "number",
+            "minimum": 1
+          },
+          "ttlSecondsBrave": {
+            "type": "number",
+            "minimum": 1
+          },
+          "ttlSecondsAi": {
+            "type": "number",
+            "minimum": 1
+          }
+        }
+      },
+      "circuitBreaker": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "failureThreshold": {
+            "type": "number",
+            "minimum": 1
+          },
+          "cooldownMs": {
+            "type": "number",
+            "minimum": 1000
+          }
+        }
+      }
+    }
+  },
+  "uiHints": {
+    "basic.brave.apiKey": {
+      "label": "Brave API Key",
+      "sensitive": true
+    },
+    "ai.tavily.apiKey": {
+      "label": "Tavily API Key",
+      "sensitive": true
+    },
+    "ai.perplexity.apiKey": {
+      "label": "Perplexity API Key",
+      "sensitive": true
+    }
+  }
+}

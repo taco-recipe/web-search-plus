@@ -1,0 +1,90 @@
+use_default_settings:
+  engines:
+    keep_only:
+      - google
+      - startpage
+      - wikipedia
+      - wikidata
+      - github
+      - google news
+
+general:
+  instance_name: "OpenClaw SearXNG (en-US)"
+  debug: false
+  privacypolicy_url: false
+  donation_url: false
+  contact_url: false
+  enable_metrics: false
+
+search:
+  safe_search: 0
+  autocomplete: ""
+  favicon_resolver: ""
+  default_lang: "en-US"
+  languages:
+    - all
+    - en
+    - en-US
+  formats:
+    - html
+    - json
+
+server:
+  base_url: "http://localhost:8888/"
+  port: 8080
+  bind_address: "0.0.0.0"
+  secret_key: "CHANGE_ME_TO_A_LONG_RANDOM_SECRET"
+  limiter: false
+  public_instance: false
+  image_proxy: false
+  method: "GET"
+  default_http_headers:
+    X-Content-Type-Options: "nosniff"
+    X-Download-Options: "noopen"
+    X-Robots-Tag: "noindex, nofollow"
+    Referrer-Policy: "no-referrer"
+
+ui:
+  default_theme: "simple"
+  results_on_new_tab: false
+  query_in_title: false
+  default_locale: "en"
+
+outgoing:
+  request_timeout: 8.0
+  max_request_timeout: 20.0
+  useragent_suffix: ""
+  pool_connections: 100
+  pool_maxsize: 20
+  enable_http2: true
+  retries: 1
+
+redis:
+  url: redis://redis:6379/0
+
+engines:
+  - name: google
+    disabled: false
+    categories: [general]
+    send_accept_language_header: true
+
+  - name: startpage
+    disabled: false
+    categories: [general]
+    send_accept_language_header: true
+
+  - name: wikipedia
+    disabled: false
+    categories: [general]
+
+  - name: wikidata
+    disabled: false
+    categories: [general]
+
+  - name: github
+    disabled: false
+    categories: [it]
+
+  - name: google news
+    disabled: false
+    categories: [news]

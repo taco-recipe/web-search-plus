@@ -1,0 +1,17 @@
+{
+  "name": "web-search-plus",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenClaw plugin for Basic + AI + Auto web search routing",
+  "main": "index.ts",
+  "scripts": {
+    "setup:openclaw": "node scripts/setup-openclaw.mjs",
+    "setup:openclaw:sh": "sh scripts/setup-openclaw.sh",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "bin": {
+    "wsp-openclaw-setup": "./scripts/setup-openclaw.mjs"
+  },
+  "license": "MIT"
+}
